@@ -1,0 +1,17 @@
+body {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.container {
+    width: 100%;
+    padding: 1em;
+}
+
+path {
+    stroke: #2f2f2f;
+}
+
+#timeline {
+    min-width: 100%;
+}
