@@ -4,8 +4,44 @@ body {
 }
 
 .container {
-    width: 100%;
+    width: 90%;
     padding: 1em;
+    margin: 0 auto;
+}
+
+.info {
+    display: grid
+}
+
+@media (min-width: 1000px) {
+    .info {
+        grid-template-areas: "map . info";
+        grid-template-columns: 67% 1fr 28%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .info {
+        grid-template-areas: "info"
+                            "map";
+        grid-template-columns: 1fr;
+    }
+}
+
+#info-container {
+    grid-area: info;
+    text-align: left;
+}
+
+#usa-territories-white {
+    grid-area: map;
+}
+
+.info-container {
+}
+
+#error {
+    display: none;
 }
 
 path {
@@ -13,5 +49,9 @@ path {
 }
 
 #timeline {
-    min-width: 100%;
+    min-width: 90%;
+}
+
+.states-info > a {
+    margin-right: 0.2em;
 }
