@@ -1,12 +1,15 @@
+import os
 import json
 import pandas as pd
 import csv
 from tqdm import tqdm
 from collections import defaultdict
 
-citations_path = "/Users/anastasia/Documents/cap-experiments/citations.csv"
-metadata_path = "/Users/anastasia/Documents/cap-experiments/metadata.csv"
-normalized_citations_path = "/Users/anastasia/Documents/cap-experiments/normalized_citations.csv"
+DIR = "/Users/anastasia/Documents/cap-experiments/"
+
+citations_path = os.path.join(DIR, "citations.csv")
+metadata_path = os.path.join(DIR, "metadata.csv")
+normalized_citations_path = os.path.join(DIR, "normalized_citations.csv")
 print('---create metadata df---')
 metadata_df = pd.read_csv(r"%s" % metadata_path)
 
@@ -77,10 +80,6 @@ for dest in tqdm(inv):
 for year in years:
     with open("years/%s.json" % year, "w") as f:
         json.dump(years[year], f)
-
-# order years-jurs by most popular case
-with open("years/1953.json", "r") as f:
-    year = json.load(f)
 
 print('----sorting years/jurs----')
 for year in years:

@@ -4,7 +4,7 @@ from flask import Flask, render_template, jsonify
 
 DIR = os.path.dirname(os.path.abspath(__file__))
 # data_dir = os.path.join(DIR, 'sorted') # for bar data
-data_dir = os.path.join(DIR, 'sorted-citations-short-per-jur') # for map data
+data_dir = os.path.join(DIR, 'sorted-citations-with-date') # for map data
 
 def create_app(test_config=None):
     # create and configure the app

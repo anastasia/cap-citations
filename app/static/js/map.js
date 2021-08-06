@@ -79,12 +79,13 @@ function setFillAndAttribute(jur, colorValue, count) {
 function addCaseInfo(c, jur) {
     let a = document.createElement('a')
     let p = document.createElement('p')
+
     let span = document.createElement('span')
     let caseName = Object.keys(c)[0];
-    span.innerText = `cited ${c[caseName][1]} times`
+    span.innerText = `(${c[caseName][3]}) cited ${c[caseName][1]} times`
     p.setAttribute('class', `states-info ${jur}`)
     p.style.display = "none";
-    a.setAttribute('href', 'https://case.law/v1/cases/' + c[caseName][0])
+    a.setAttribute('href', c[caseName][2])
     a.innerText = caseName;
     p.append(a)
     p.append(span)
@@ -138,10 +139,13 @@ function displayInfo(jur) {
         selectedJurInfo[k].style.display = 'block';
     }
     selectedState.setAttribute('class', jur);
-    selectedState.innerText = translation[jur];
+    if (translation[jur])
+        selectedState.innerText = translation[jur];
 }
 
 function hideInfo() {
+    selectedState.empty();
+
     for (let j = 0; j < statesInfo.length; j++) {
         statesInfo[j].style.display = 'none';
     }
@@ -165,15 +169,16 @@ document.addEventListener('DOMContentLoaded', function () {
         year.innerText = this.value;
         let jur = selectedState.getAttribute('class');
         stateCitations.empty();
-
+        selectedState.empty();
         await getData(this.value)
         displayInfo(jur)
 
     }
     for (let i = 0; i < states.length; i++) {
         states[i].addEventListener('click', (el) => {
-            hideInfo();
+
             let selectedJur = el.target.parentElement.id;
+            hideInfo();
             displayInfo(selectedJur)
         })
     }
